@@ -16,6 +16,7 @@ object Game {
     var numberOfIterations: Int = -1
     var height: Int = 45
     var width: Int = 100
+    var updateSleepTimerMS: Long = 400
 
     fun setBackground(background: Boolean, backgroundChar: Char) {
       backgroundOn = background
@@ -29,11 +30,9 @@ object Game {
       println(Game)
       println(Board)
       Board.calculateGridUpdate()
-      Thread.sleep(350)
+      Thread.sleep(Settings.updateSleepTimerMS)
     }
   }
 
-//  override fun toString(): String {
-//
-//  }
+//  override fun toString(): String { }
 }
