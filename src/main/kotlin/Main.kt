@@ -1,37 +1,32 @@
 package main.kotlin
 
-import main.kotlin.Game.GAME_NAME
 import main.kotlin.Game.Settings
 import main.kotlin.Game.mainLoop
 
 fun main() {
-//  Settings.seedSize = 8 // 3
-  Settings.seed =
-//  "0111011101000100" // Board.generateSeed()
-//  "110111010" // short symmetric pattern
-    "010010010" // oscillation
+  var testing =
+//    true
+    false
+
+  if (testing) Settings.numberOfIterations = 1 // -1
+
+  Settings.seedSize = 8 // 5
+//  Settings.seed =
+//  1101110001111110010011011
+//  "0111110001001111001111001110100101010000010110011101010101100010"
+//  "1010000010110101011100011"
 //  Settings.stretchToTerminal = true // false
   Settings.setBackground(
-//    false,
-//    ' '
-    true,
-    '\''
+    false,
+    ' '
+//    true,
+//    '\''
   )
 //  Settings.aliveChar = // '@'
 //  Settings.deadChar = // '.'
-//  Settings.numberOfIterations = // -1
-//  Settings.height = // 45
-//  Settings.width = // 100
-  Settings.updateSleepTimerMS = 0
-
-  println("Seed: ${Settings.seed}")
-  println("Starting $GAME_NAME")
-  if (Settings.stretchToTerminal) {
-    val termSize = HelperFunctions.getTermSize()
-    Settings.height = termSize.first
-    Settings.width = termSize.second
-  }
-
-  Board.initBoard()
-  mainLoop(Settings.numberOfIterations)
+//  Settings.numberOfIterations = 1 // -1
+  Settings.height = 239 // 45
+  Settings.width = 55 // 100
+  Settings.updateSleepTimerMS = 10
+  mainLoop()
 }

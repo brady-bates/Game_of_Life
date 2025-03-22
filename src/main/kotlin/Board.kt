@@ -12,21 +12,22 @@ object Board {
     var y: Int = ( numCols / 2 )
   }
 
-  var Grid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
+  private var Grid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
   var lastGrid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
 
   fun initBoard() {
     var count = 0
     val seedSize = Game.Settings.seedSize
-    val halfSeedSize = seedSize / 2
-    val xLowerBound = (Origin.x - halfSeedSize)
-    val xUpperBound = (Origin.x + halfSeedSize + if (halfSeedSize % 2 == 0) 1 else 0)
-    val yLowerBound = (Origin.y - halfSeedSize)
-    val yUpperBound = (Origin.y + halfSeedSize + if (halfSeedSize % 2 == 0) 1 else 0)
+    val xLowerBound = (Origin.x - seedSize)
+    val xUpperBound = (Origin.x + seedSize)
+    val yLowerBound = (Origin.y - seedSize)
+    val yUpperBound = (Origin.y + seedSize)
+
+    println("$seedSize, $seedSize, ${Game.Settings.seed}") // Debugging
+
     for (row in xLowerBound..xUpperBound) {
       for (col in yLowerBound..yUpperBound) {
         if (count == Game.Settings.seed.length) break
-        println("$row, $col, $count, ${Game.Settings.seed}") // Debugging
         Grid[row][col] = Game.Settings.seed[count].digitToInt()
         count++
       }
@@ -57,7 +58,7 @@ object Board {
     Game.currentTick++
   }
 
-  fun calculateNextCell(x: Int, y: Int): Int {
+  private fun calculateNextCell(x: Int, y: Int): Int {
     var livingCount = 0
     for (row in x-1..x+1) {
       for (col in y-1..y+1) {
@@ -75,7 +76,7 @@ object Board {
     }
   }
 
-  fun inGrid(x: Int, y: Int): Boolean {
+  private fun inGrid(x: Int, y: Int): Boolean {
     return x in Grid.indices && y in Grid[0].indices
   }
 
@@ -85,8 +86,8 @@ object Board {
     repeat( seedSize * seedSize ) {
       val rand = Random.nextInt(0, 2)
       out +=
-//        if(rand == 1) "1" else Random.nextInt(0, 2)
-        rand
+        if(rand == 1) "1" else Random.nextInt(0, 2)
+//        rand
     }
     return out
   }
