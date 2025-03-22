@@ -1,33 +1,39 @@
-import kotlin.random.Random
+package main.kotlin
+
+//import kotlinx.serialization.*
 
 object Game {
-  val GAME_NAME = "Conway's Game of Life"
+  const val GAME_NAME = "Conway's Game of Life"
   var currentTick = 0
 
-  fun generateSeed(): String {
-    var out = ""
-    repeat(9) {
-      out += Random.nextInt(0, 2)
+  data object Settings {
+    var seedSize: Int = 3
+    var seed: String = Board.generateSeed()
+    var stretchToTerminal: Boolean = false
+    private var backgroundOn: Boolean = true
+    var aliveChar: Char = '@'
+    var deadChar: Char = '.'
+    var numberOfIterations: Int = -1
+    var height: Int = 45
+    var width: Int = 100
+
+    fun setBackground(background: Boolean, backgroundChar: Char) {
+      backgroundOn = background
+      deadChar = if (backgroundOn) backgroundChar else ' '
     }
-    return out
   }
 
-  fun start() {
-    println("Starting $GAME_NAME")
-    Board.initBoard("010110011")
-
-    mainLoop()
-  }
-
-  fun mainLoop() {
-    while (true) {
-      Runtime.getRuntime().exec("clear")
+  fun mainLoop(numberOfIterations: Int) {
+    while (numberOfIterations == -1 || currentTick < numberOfIterations) {
+      HelperFunctions.syscall("clear") // Does not work in IDE terminal
+      println(Game)
       println(Board)
-      Board.updateGrid()
-
-      Thread.sleep(750)
+      Board.calculateGridUpdate()
+      Thread.sleep(350)
     }
   }
 
-//  override fun toString() {}
+//  override fun toString(): String {
+//
+//  }
 }
