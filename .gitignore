@@ -1,0 +1,17 @@
+### Kotlin ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+META-INF/
+src/main/kotlin/*.class
+src/main/kotlin/*.jar
+
+### IntelliJ ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Mac OS ###
+.DS_Store
