@@ -12,9 +12,7 @@ fun main() {
 
   Settings.seedSize = 8 // 5
 //  Settings.seed =
-//  1101110001111110010011011
-//  "0111110001001111001111001110100101010000010110011101010101100010"
-//  "1010000010110101011100011"
+//  "1111110101001111111111011"
 //  Settings.stretchToTerminal = true // false
   Settings.setBackground(
     false,
