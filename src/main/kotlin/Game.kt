@@ -38,14 +38,18 @@ object Game {
     Board.initBoard()
     while (State.numberOfIterations == -1 || State.currentTick < State.numberOfIterations) {
       HelperFunctions.syscall("clear") // Does not work in IDE terminal
-      println("Seed: ${Settings.seed}")
-//      println(Game)
+      println(Game)
       println(Board)
       Board.calculateGridUpdate()
       Thread.sleep(Settings.updateSleepTimerMS)
     }
   }
 
-//  override fun toString(): String { }
+  override fun toString(): String {
+    return (
+            "Seed: ${Settings.seed}"
+            + "\nCurrent Tick: ${State.currentTick}"
+            )
+  }
 
 }
