@@ -84,17 +84,6 @@ object Board {
     return x in Grid.indices && y in Grid[0].indices
   }
 
-  fun generateSeed(): String {
-    var out = ""
-    val seedSize = Game.Settings.seedSize
-    repeat( seedSize * seedSize ) {
-      val rand = Random.nextInt(0, 2)
-      out +=
-        if(rand == 1) "1" else Random.nextInt(0, 2)
-    }
-    return out
-  }
-
   override fun toString(): String {
     var out = ""
     val deadChar = if (Game.Settings.backgroundOn) Game.Settings.deadChar else ' '

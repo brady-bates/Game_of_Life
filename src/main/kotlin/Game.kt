@@ -1,5 +1,7 @@
 package main.kotlin
 
+import kotlin.random.Random
+
 object Game {
   private const val GAME_NAME = "Conway's Game of Life"
 
@@ -10,7 +12,7 @@ object Game {
 
   data object Settings {
     var seedSize: Int = 5
-    var seed: String = Board.generateSeed()
+    var seed: String = generateSeed()
     var stretchToTerminal: Boolean = false
     var backgroundOn: Boolean = true
     var aliveChar: Char = '@'
@@ -18,9 +20,9 @@ object Game {
     var maxIterations: Int = -1
     var height: Int = 45
     var width: Int = 100
-    var updateSleepTimerMS: Long = 400
-    var numRows: Int = 85
-    var numCols: Int = 45
+    var updateDelayMS: Long = 400
+    var numRows: Int = 45
+    var numCols: Int = 85
 
     fun setWidthHeight(width: Int, height: Int) {
       Settings.width = width
@@ -28,6 +30,17 @@ object Game {
       Board.Origin.x = ( width / 2 )
       Board.Origin.y = ( height / 2 )
     }
+  }
+
+  private fun generateSeed(): String {
+    var out = ""
+    val seedSize = Game.Settings.seedSize
+    repeat( seedSize * seedSize ) {
+      val rand = Random.nextInt(0, 2)
+      out +=
+        if(rand == 1) "1" else Random.nextInt(0, 2)
+    }
+    return out
   }
 
   fun mainLoop() {
@@ -43,7 +56,7 @@ object Game {
       println(Game)
       println(Board)
       Board.calculateGridUpdate()
-      Thread.sleep(Settings.updateSleepTimerMS)
+      Thread.sleep(Settings.updateDelayMS)
     }
   }
 

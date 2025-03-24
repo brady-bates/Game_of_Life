@@ -18,6 +18,6 @@ fun main() {
 //  Settings.numberOfIterations = 1 // -1
   Settings.height = 239 // 45
   Settings.width = 55 // 100
-  Settings.updateSleepTimerMS = 10
+  Settings.updateDelayMS = 2
   mainLoop()
 }
