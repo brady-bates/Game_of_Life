@@ -19,6 +19,8 @@ object Game {
     var height: Int = 45
     var width: Int = 100
     var updateSleepTimerMS: Long = 400
+    var numRows: Int = 85
+    var numCols: Int = 45
 
     fun setWidthHeight(width: Int, height: Int) {
       Settings.width = width

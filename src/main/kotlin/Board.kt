@@ -4,16 +4,13 @@ import kotlin.random.Random
 import kotlin.system.exitProcess
 
 object Board {
-  var numRows: Int = 40
-  var numCols: Int = 80
-
-  private var Grid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
-  private var lastGrid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
-  private var newGrid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
+  private var Grid: Array<Array<Int>> = Array(Game.Settings.numRows) { Array(Game.Settings.numCols) {0} }
+  private var lastGrid: Array<Array<Int>> = Array(Game.Settings.numRows) { Array(Game.Settings.numCols) {0} }
+  private var newGrid: Array<Array<Int>> = Array(Game.Settings.numRows) { Array(Game.Settings.numCols) {0} }
 
   data object Origin {
-    var x: Int = ( numRows / 2 )
-    var y: Int = ( numCols / 2 )
+    var x: Int = ( Game.Settings.numRows / 2 )
+    var y: Int = ( Game.Settings.numCols / 2 )
   }
 
   fun initBoard() {
@@ -23,9 +20,7 @@ object Board {
     val xUpperBound = (Origin.x + seedSize)
     val yLowerBound = (Origin.y - seedSize)
     val yUpperBound = (Origin.y + seedSize)
-
-    ("$seedSize, $seedSize, ${Game.Settings.seed}")  // Debugging
-
+//    println("$seedSize, $seedSize, ${Game.Settings.seed}")  // Debugging
     for (row in xLowerBound..xUpperBound) {
       for (col in yLowerBound..yUpperBound) {
         if (count == Game.Settings.seed.length) break
