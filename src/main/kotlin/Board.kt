@@ -42,6 +42,7 @@ object Board {
         newGrid[row][col] = calculateNextCell(row, col)
       }
     }
+    isGameDone()
     lastGrid = Grid
     Grid = newGrid
     Game.State.currentTick++
