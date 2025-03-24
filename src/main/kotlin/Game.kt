@@ -62,9 +62,9 @@ object Game {
 
   override fun toString(): String {
     return (
-            "Seed: ${Settings.seed}"
-            + "\nCurrent Tick: ${State.currentTick}"
-            )
+      "Seed: ${Settings.seed}"
+      + "\nCurrent Tick: ${State.currentTick}"
+    )
   }
 
 }
