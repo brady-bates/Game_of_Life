@@ -49,7 +49,7 @@ object Board {
       exitProcess(0)
     }
     if ( newGrid.contentDeepEquals(lastGrid) ) {
-      println("Oscillation has been achieved, exiting process now")
+      println("2-cycle oscillation has been achieved, exiting process now")
       exitProcess(0)
     }
     if ( newGrid.contentDeepEquals(Grid)) {
