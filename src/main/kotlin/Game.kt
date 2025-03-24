@@ -12,18 +12,13 @@ object Game {
     var seedSize: Int = 5
     var seed: String = Board.generateSeed()
     var stretchToTerminal: Boolean = false
-    private var backgroundOn: Boolean = true
+    var backgroundOn: Boolean = true
     var aliveChar: Char = '@'
     var deadChar: Char = '.'
     var maxIterations: Int = -1
     var height: Int = 45
     var width: Int = 100
     var updateSleepTimerMS: Long = 400
-
-    fun setBackground(background: Boolean, backgroundChar: Char) {
-      backgroundOn = background
-      deadChar = if (backgroundOn) backgroundChar else ' '
-    }
 
     fun setWidthHeight(width: Int, height: Int) {
       Settings.width = width

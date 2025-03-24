@@ -14,14 +14,7 @@ fun main() {
 //  Settings.seed =
 //  "1111110101001111111111011"
 //  Settings.stretchToTerminal = true // false
-  Settings.setBackground(
-    false,
-    ' '
-//    true,
-//    '\''
-  )
-//  Settings.aliveChar = // '@'
-//  Settings.deadChar = // '.'
+  Settings.backgroundOn = true
 //  Settings.numberOfIterations = 1 // -1
   Settings.height = 239 // 45
   Settings.width = 55 // 100

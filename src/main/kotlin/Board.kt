@@ -87,17 +87,17 @@ object Board {
       val rand = Random.nextInt(0, 2)
       out +=
         if(rand == 1) "1" else Random.nextInt(0, 2)
-//        rand
     }
     return out
   }
 
   override fun toString(): String {
     var out = ""
+    val deadChar = if (Game.Settings.backgroundOn) Game.Settings.deadChar else ' '
     for (row in Grid.indices) {
       for (col in Grid[0].indices) {
         val current = Grid[row][col]
-        out += if (current == 0) Game.Settings.deadChar else Game.Settings.aliveChar
+        out += if (current == 0) deadChar else Game.Settings.aliveChar
         out += " "
       }
       out += "\n"
