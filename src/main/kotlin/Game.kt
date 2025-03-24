@@ -14,7 +14,7 @@ object Game {
     var seedSize: Int = 5
     var seed: String = generateSeed()
     var stretchToTerminal: Boolean = false
-    var backgroundOn: Boolean = true
+    var backgroundOn: Boolean = false
     var aliveChar: Char = '@'
     var deadChar: Char = '.'
     var maxIterations: Int = -1
