@@ -7,13 +7,13 @@ object Board {
   var numRows: Int = 40
   var numCols: Int = 80
 
+  private var Grid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
+  private var lastGrid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
+
   data object Origin {
     var x: Int = ( numRows / 2 )
     var y: Int = ( numCols / 2 )
   }
-
-  private var Grid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
-  var lastGrid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
 
   fun initBoard() {
     var count = 0
@@ -23,7 +23,7 @@ object Board {
     val yLowerBound = (Origin.y - seedSize)
     val yUpperBound = (Origin.y + seedSize)
 
-    println("$seedSize, $seedSize, ${Game.Settings.seed}") // Debugging
+    ("$seedSize, $seedSize, ${Game.Settings.seed}")  // Debugging
 
     for (row in xLowerBound..xUpperBound) {
       for (col in yLowerBound..yUpperBound) {
@@ -55,7 +55,7 @@ object Board {
     }
     lastGrid = Grid
     Grid = newGrid
-    Game.currentTick++
+    Game.State.currentTick++
   }
 
   private fun calculateNextCell(x: Int, y: Int): Int {

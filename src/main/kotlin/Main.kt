@@ -8,7 +8,7 @@ fun main() {
 //    true
     false
 
-  if (testing) Settings.numberOfIterations = 1 // -1
+  if (testing) Settings.maxIterations = 1 // -1
 
   Settings.seedSize = 8 // 5
 //  Settings.seed =

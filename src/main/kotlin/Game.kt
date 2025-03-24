@@ -1,8 +1,12 @@
 package main.kotlin
 
 object Game {
-  const val GAME_NAME = "Conway's Game of Life"
-  var currentTick = 0
+  private const val GAME_NAME = "Conway's Game of Life"
+
+  data object State {
+    var currentTick = 0
+    var numberOfIterations: Int = Settings.maxIterations
+  }
 
   data object Settings {
     var seedSize: Int = 5
@@ -11,7 +15,7 @@ object Game {
     private var backgroundOn: Boolean = true
     var aliveChar: Char = '@'
     var deadChar: Char = '.'
-    var numberOfIterations: Int = -1
+    var maxIterations: Int = -1
     var height: Int = 45
     var width: Int = 100
     var updateSleepTimerMS: Long = 400
@@ -37,7 +41,7 @@ object Game {
       Settings.setWidthHeight(termSize.second, termSize.first)
     }
     Board.initBoard()
-    while (Settings.numberOfIterations == -1 || currentTick < Settings.numberOfIterations) {
+    while (State.numberOfIterations == -1 || State.currentTick < State.numberOfIterations) {
       HelperFunctions.syscall("clear") // Does not work in IDE terminal
       println("Seed: ${Settings.seed}")
 //      println(Game)
