@@ -4,7 +4,7 @@ import main.kotlin.Game.Settings
 import main.kotlin.Game.mainLoop
 
 fun main() {
-  var testing =
+  val testing =
 //    true
     false
 

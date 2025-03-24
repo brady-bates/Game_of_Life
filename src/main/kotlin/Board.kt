@@ -9,6 +9,7 @@ object Board {
 
   private var Grid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
   private var lastGrid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
+  private var newGrid: Array<Array<Int>> = Array(numRows) { Array(numCols) {0} }
 
   data object Origin {
     var x: Int = ( numRows / 2 )
@@ -35,12 +36,18 @@ object Board {
   }
 
   fun calculateGridUpdate() {
-    val newGrid: Array<Array<Int>> = Array(Grid.size) { Array(Grid[0].size) {0} }
+    newGrid = Array(Grid.size) { Array(Grid[0].size) {0} }
     for (row in Grid.indices) {
       for (col in Grid[0].indices) {
         newGrid[row][col] = calculateNextCell(row, col)
       }
     }
+    lastGrid = Grid
+    Grid = newGrid
+    Game.State.currentTick++
+  }
+
+  private fun isGameDone() {
     if ( newGrid.contentDeepEquals(Array(Grid[0].size) { Array(Grid.size) {0} })) {
       println("All dead :(, exiting process now")
       exitProcess(0)
@@ -53,9 +60,6 @@ object Board {
       println("No more change, exiting process now")
       exitProcess(0)
     }
-    lastGrid = Grid
-    Grid = newGrid
-    Game.State.currentTick++
   }
 
   private fun calculateNextCell(x: Int, y: Int): Int {
@@ -68,10 +72,14 @@ object Board {
       }
     }
     return when {
-      Grid[x][y] == 1 && livingCount < 2 -> 0 // Any live cell with fewer than two live neighbours dies, as if by underpopulation
-      Grid[x][y] == 1 && livingCount in 2..3 -> Grid[x][y] // Any live cell with two or three live neighbours lives on to the next generation
-      Grid[x][y] == 0 && livingCount == 3 -> 1 // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-      Grid[x][y] == 1 && livingCount > 3 -> 0 // Any live cell with more than three live neighbours dies, as if by overpopulation
+      // Any live cell with fewer than two live neighbours dies, as if by underpopulation
+      Grid[x][y] == 1 && livingCount < 2 -> 0
+      // Any live cell with two or three live neighbours lives on to the next generation
+      Grid[x][y] == 1 && livingCount in 2..3 -> Grid[x][y]
+      // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
+      Grid[x][y] == 0 && livingCount == 3 -> 1
+      // Any live cell with more than three live neighbours dies, as if by overpopulation
+      Grid[x][y] == 1 && livingCount > 3 -> 0
       else -> Grid[x][y]
     }
   }
