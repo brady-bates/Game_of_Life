@@ -13,15 +13,17 @@ fun main() {
     "1111011110010101110110010" // 3-cycle oscillation
   )
 
+  Settings.seedSize = 8 // 5
+//  Settings.aliveString = "\uD83D\uDD25" // @
+//  Settings.seed = seedList[1]
+//  Settings.stretchToTerminal = true // false
+//  Settings.backgroundOn = true // false
+//  Settings.numberOfIterations = 1 // -1
+  Settings.height = 400 // 45
+  Settings.width = 240 // 100
+  Settings.updateDelayMS = Game.Settings.SpeedsInMS.BLAZINGLYFAST.speedInMS // 400
+
   if (testing) Settings.maxIterations = 1 // -1
 
-  Settings.seedSize = 8 // 5
-  Settings.seed = seedList[1]
-//  Settings.stretchToTerminal = true // false
-//  Settings.backgroundOn = true
-//  Settings.numberOfIterations = 1 // -1
-  Settings.height = 239 // 45
-  Settings.width = 55 // 100
-  Settings.updateDelayMS = 200
   mainLoop()
 }

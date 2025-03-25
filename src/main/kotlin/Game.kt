@@ -15,14 +15,21 @@ object Game {
     var seed: String = generateSeed()
     var stretchToTerminal: Boolean = false
     var backgroundOn: Boolean = false
-    var aliveChar: Char = '@'
-    var deadChar: Char = '.'
+    var aliveString: String = "@"
+    var deadString: String = "."
     var maxIterations: Int = -1
     var height: Int = 45
     var width: Int = 100
     var updateDelayMS: Long = 400
     var numRows: Int = 45
     var numCols: Int = 85
+
+    enum class SpeedsInMS(val speedInMS: Long) {
+      SLOW(700),
+      MEDIUM(300),
+      FAST(50),
+      BLAZINGLYFAST(10)
+    }
 
     fun setWidthHeight(width: Int, height: Int) {
       Settings.width = width
@@ -37,8 +44,7 @@ object Game {
     val seedSize = Game.Settings.seedSize
     repeat( seedSize * seedSize ) {
       val rand = Random.nextInt(0, 2)
-      out +=
-        if(rand == 1) "1" else Random.nextInt(0, 2)
+      out += if(rand == 1) "1" else Random.nextInt(0, 2)
     }
     return out
   }
@@ -54,7 +60,7 @@ object Game {
     while (State.numberOfIterations == -1 || State.currentTick < State.numberOfIterations) {
       HelperFunctions.syscall("clear") // Does not work in IDE terminal
       println(Game)
-      println(Board)
+      println(Board.concatenateStringGrid(Board.convertToStringGrid()))
       Board.calculateGridUpdate()
       Thread.sleep(Settings.updateDelayMS)
     }

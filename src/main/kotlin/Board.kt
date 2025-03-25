@@ -1,6 +1,5 @@
 package main.kotlin
 
-import kotlin.random.Random
 import kotlin.system.exitProcess
 
 object Board {
@@ -84,16 +83,37 @@ object Board {
     return x in Grid.indices && y in Grid[0].indices
   }
 
-  override fun toString(): String {
-    var out = ""
-    val deadChar = if (Game.Settings.backgroundOn) Game.Settings.deadChar else ' '
+  fun convertToStringGrid(): Array<Array<String>> {
+    val outGrid: Array<Array<String>> = Array(Grid.size) { Array(Grid[0].size) {""} }
+    val deadString = if (Game.Settings.backgroundOn) Game.Settings.deadString else " "
+    val isAliveStringWide = Game.Settings.aliveString.length > 1
+    val padding = " ".repeat(Game.Settings.aliveString.length-1)
     for (row in Grid.indices) {
       for (col in Grid[0].indices) {
-        val current = Grid[row][col]
-        out += if (current == 0) deadChar else Game.Settings.aliveChar
-        out += " "
+        outGrid[row][col] = (if (Grid[row][col] == 1) Game.Settings.aliveString else deadString) + " "
+        if (col == Grid[0].size-1) outGrid[row][col] += "\n"
       }
-      out += "\n"
+    }
+    if ( ! isAliveStringWide ) return outGrid
+    for (col in Grid[0].indices) {
+      for (row in Grid.indices) {
+        if ( Grid[row][col] == 1 ) {
+          for (innerRow in Grid.indices) {
+            outGrid[innerRow][col] += if ( Grid[innerRow][col] == 0 ) padding else ""
+          }
+          continue
+        }
+      }
+    }
+    return outGrid
+  }
+
+  fun concatenateStringGrid(stringGrid: Array<Array<String>>): String{
+    var out = ""
+    for (row in Grid.indices) {
+      for (col in Grid[0].indices) {
+        out += stringGrid[row][col]
+      }
     }
     return out
   }
