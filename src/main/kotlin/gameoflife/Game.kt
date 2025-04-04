@@ -24,8 +24,8 @@ object Game {
     var numCols: Int = 85
 
     enum class SpeedsInMS(val speedInMS: Long) {
-      SLOW(700),
-      MEDIUM(300),
+      SLOW(400),
+      MEDIUM(150),
       FAST(50),
       BLAZINGLYFAST(10)
     }
@@ -46,9 +46,11 @@ object Game {
     println("Starting $GAME_NAME")
     Board.initBoard()
     while (State.numberOfIterations == -1 || State.currentTick < State.numberOfIterations) {
-      HelperFunctions.syscall("clear") // Does not work in IDE terminal
-      println(Game)
-      println(Board.concatenateStringGrid(Board.convertToStringGrid()))
+//      print("\u001Bc")
+//      println(Game)
+//      Runtime.getRuntime().exec("clear")
+      println("\u001Bc" + Game + "\n" + Board.concatenateStringGrid(Board.convertToStringGrid()))
+      System.out.flush()
       Board.calculateGridUpdate()
       Thread.sleep(Settings.updateDelayMS)
     }

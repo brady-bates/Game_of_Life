@@ -19,7 +19,7 @@ fun main() {
 //  Settings.numberOfIterations = 1 // -1
   Game.Settings.height = 45 // 45
   Game.Settings.width = 100 // 100
-  Game.Settings.updateDelayMS = Game.Settings.SpeedsInMS.BLAZINGLYFAST.speedInMS // 400
+  Game.Settings.updateDelayMS = Game.Settings.SpeedsInMS.MEDIUM.speedInMS // 400
 
   if (testing) Game.Settings.maxIterations = 1 // -1
 

@@ -3,7 +3,7 @@ package gameoflife
 import kotlin.system.exitProcess
 
 object Board {
-  private var Grid: Array<Array<Int>> = Array(Game.Settings.numRows) { Array(Game.Settings.numCols) {0} }
+  private var grid: Array<Array<Int>> = Array(Game.Settings.numRows) { Array(Game.Settings.numCols) {0} }
   private var lastGrid: Array<Array<Int>> = Array(Game.Settings.numRows) { Array(Game.Settings.numCols) {0} }
   private var newGrid: Array<Array<Int>> = Array(Game.Settings.numRows) { Array(Game.Settings.numCols) {0} }
 
@@ -23,27 +23,27 @@ object Board {
     for (row in xLowerBound..xUpperBound) {
       for (col in yLowerBound..yUpperBound) {
         if (count == Game.Settings.seed.length) break
-        Grid[row][col] = Game.Settings.seed[count].digitToInt()
+        grid[row][col] = Game.Settings.seed[count].digitToInt()
         count++
       }
     }
   }
 
   fun calculateGridUpdate() {
-    newGrid = Array(Grid.size) { Array(Grid[0].size) {0} }
-    for (row in Grid.indices) {
-      for (col in Grid[0].indices) {
+    newGrid = Array(grid.size) { Array(grid[0].size) {0} }
+    for (row in grid.indices) {
+      for (col in grid[0].indices) {
         newGrid[row][col] = calculateNextCell(row, col)
       }
     }
     isGameDone()
-    lastGrid = Grid
-    Grid = newGrid
+    lastGrid = grid
+    grid = newGrid
     Game.State.currentTick++
   }
 
   private fun isGameDone() {
-    if ( newGrid.contentDeepEquals(Array(Grid.size) { Array(Grid[0].size) {0} })) {
+    if ( newGrid.contentDeepEquals(Array(grid.size) { Array(grid[0].size) {0} })) {
       println("All dead :(, exiting process now")
       exitProcess(0)
     }
@@ -51,7 +51,7 @@ object Board {
       println("2-cycle oscillation has been achieved, exiting process now")
       exitProcess(0)
     }
-    if ( newGrid.contentDeepEquals(Grid)) {
+    if ( newGrid.contentDeepEquals(grid)) {
       println("No more change, exiting process now")
       exitProcess(0)
     }
@@ -63,33 +63,33 @@ object Board {
       for (col in y-1..y+1) {
         if ( row == x && col == y ) continue // skip the center
         if ( ! inGrid(row, col) ) continue // skip out of grid
-        if ( Grid[row][col] == 1 ) livingCount++
+        if ( grid[row][col] == 1 ) livingCount++
       }
     }
     return when {
       // Any live cell with fewer than two live neighbours dies, as if by underpopulation
-      Grid[x][y] == 1 && livingCount < 2 -> 0
+      grid[x][y] == 1 && livingCount < 2 -> 0
       // Any live cell with two or three live neighbours lives on to the next generation
-      Grid[x][y] == 1 && livingCount in 2..3 -> Grid[x][y]
+      grid[x][y] == 1 && livingCount in 2..3 -> grid[x][y]
       // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
-      Grid[x][y] == 0 && livingCount == 3 -> 1
+      grid[x][y] == 0 && livingCount == 3 -> 1
       // Any live cell with more than three live neighbours dies, as if by overpopulation
-      Grid[x][y] == 1 && livingCount > 3 -> 0
-      else -> Grid[x][y]
+      grid[x][y] == 1 && livingCount > 3 -> 0
+      else -> grid[x][y]
     }
   }
 
   private fun inGrid(x: Int, y: Int): Boolean {
-    return x in Grid.indices && y in Grid[0].indices
+    return x in grid.indices && y in grid[0].indices
   }
 
   fun convertToStringGrid(): Array<Array<String>> {
-    val outGrid: Array<Array<String>> = Array(Grid.size) { Array(Grid[0].size) {""} }
+    val outGrid: Array<Array<String>> = Array(grid.size) { Array(grid[0].size) {""} }
     val deadString = if (Game.Settings.backgroundOn) Game.Settings.deadString else " "
-    for (row in Grid.indices) {
-      for (col in Grid[0].indices) {
-        outGrid[row][col] = (if (Grid[row][col] == 1) Game.Settings.aliveString else deadString) + " "
-        if (col == Grid[0].size-1) outGrid[row][col] += "\n"
+    for (row in grid.indices) {
+      for (col in grid[0].indices) {
+        outGrid[row][col] = (if (grid[row][col] == 1) Game.Settings.aliveString else deadString) + " "
+        if (col == grid[0].size-1) outGrid[row][col] += "\n"
       }
     }
     return outGrid
@@ -97,8 +97,8 @@ object Board {
 
   fun concatenateStringGrid(stringGrid: Array<Array<String>>): String {
     var out = ""
-    for (row in Grid.indices) {
-      for (col in Grid[0].indices) {
+    for (row in grid.indices) {
+      for (col in grid[0].indices) {
         out += stringGrid[row][col]
       }
     }
