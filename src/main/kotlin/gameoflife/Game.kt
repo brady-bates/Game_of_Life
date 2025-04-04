@@ -46,9 +46,6 @@ object Game {
     println("Starting $GAME_NAME")
     Board.initBoard()
     while (State.numberOfIterations == -1 || State.currentTick < State.numberOfIterations) {
-//      print("\u001Bc")
-//      println(Game)
-//      Runtime.getRuntime().exec("clear")
       println("\u001Bc" + Game + "\n" + Board.concatenateStringGrid(Board.convertToStringGrid()))
       System.out.flush()
       Board.calculateGridUpdate()
