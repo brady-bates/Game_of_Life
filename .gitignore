@@ -3,9 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-src/main/kotlin/META-INF/
-src/main/kotlin/*.class
-src/main/kotlin/*.jar
+src/main/kotlin/gameoflife/*.jar
 
 ### IntelliJ ###
 .idea/
@@ -15,5 +13,3 @@ src/main/kotlin/*.jar
 
 ### Mac OS ###
 .DS_Store
-
-todo.txt

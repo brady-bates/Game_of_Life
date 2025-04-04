@@ -43,7 +43,7 @@ object Board {
   }
 
   private fun isGameDone() {
-    if ( newGrid.contentDeepEquals(Array(Grid[0].size) { Array(Grid.size) {0} })) {
+    if ( newGrid.contentDeepEquals(Array(Grid.size) { Array(Grid[0].size) {0} })) {
       println("All dead :(, exiting process now")
       exitProcess(0)
     }
