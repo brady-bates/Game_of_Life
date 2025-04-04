@@ -1,4 +1,4 @@
-package main.kotlin
+package gameoflife
 
 import kotlin.system.exitProcess
 
@@ -108,7 +108,7 @@ object Board {
     return outGrid
   }
 
-  fun concatenateStringGrid(stringGrid: Array<Array<String>>): String{
+  fun concatenateStringGrid(stringGrid: Array<Array<String>>): String {
     var out = ""
     for (row in Grid.indices) {
       for (col in Grid[0].indices) {

@@ -1,4 +1,4 @@
-package main.kotlin
+package gameoflife
 
 import kotlin.random.Random
 
@@ -13,7 +13,6 @@ object Game {
   data object Settings {
     var seedSize: Int = 5
     var seed: String = generateSeed()
-    var stretchToTerminal: Boolean = false
     var backgroundOn: Boolean = false
     var aliveString: String = "@"
     var deadString: String = "."
@@ -31,17 +30,11 @@ object Game {
       BLAZINGLYFAST(10)
     }
 
-    fun setWidthHeight(width: Int, height: Int) {
-      Settings.width = width
-      Settings.height = height
-      Board.Origin.x = ( width / 2 )
-      Board.Origin.y = ( height / 2 )
-    }
   }
 
   private fun generateSeed(): String {
     var out = ""
-    val seedSize = Game.Settings.seedSize
+    val seedSize = Settings.seedSize
     repeat( seedSize * seedSize ) {
       val rand = Random.nextInt(0, 2)
       out += if(rand == 1) "1" else Random.nextInt(0, 2)
@@ -51,11 +44,6 @@ object Game {
 
   fun mainLoop() {
     println("Starting $GAME_NAME")
-    if (Settings.stretchToTerminal) {
-      val termSize = HelperFunctions.getTermSize()
-      println("term: $termSize")
-      Settings.setWidthHeight(termSize.second, termSize.first)
-    }
     Board.initBoard()
     while (State.numberOfIterations == -1 || State.currentTick < State.numberOfIterations) {
       HelperFunctions.syscall("clear") // Does not work in IDE terminal
