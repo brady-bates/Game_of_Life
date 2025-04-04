@@ -86,23 +86,10 @@ object Board {
   fun convertToStringGrid(): Array<Array<String>> {
     val outGrid: Array<Array<String>> = Array(Grid.size) { Array(Grid[0].size) {""} }
     val deadString = if (Game.Settings.backgroundOn) Game.Settings.deadString else " "
-    val isAliveStringWide = Game.Settings.aliveString.length > 1
-    val padding = " ".repeat(Game.Settings.aliveString.length-1)
     for (row in Grid.indices) {
       for (col in Grid[0].indices) {
         outGrid[row][col] = (if (Grid[row][col] == 1) Game.Settings.aliveString else deadString) + " "
         if (col == Grid[0].size-1) outGrid[row][col] += "\n"
-      }
-    }
-    if ( ! isAliveStringWide ) return outGrid
-    for (col in Grid[0].indices) {
-      for (row in Grid.indices) {
-        if ( Grid[row][col] == 1 ) {
-          for (innerRow in Grid.indices) {
-            outGrid[innerRow][col] += if ( Grid[innerRow][col] == 0 ) padding else ""
-          }
-          continue
-        }
       }
     }
     return outGrid
