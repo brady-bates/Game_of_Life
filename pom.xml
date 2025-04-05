@@ -14,7 +14,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>GameOfLife</artifactId>
+    <artifactId>gameoflife</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -73,7 +73,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>MainKt</mainClass>
+                    <mainClass>gameoflife.MainKt</mainClass>
                 </configuration>
             </plugin>
         </plugins>
