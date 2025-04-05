@@ -19,8 +19,8 @@ fun main() {
     height = 45      // 45
     width = 100      // 100
 
-    aliveString = "\uD83D\uDD25"    // @
-    deadString = "-"                // .
+//    aliveString = "\uD83D\uDD25"    // @
+//    deadString = "-"                // .
     backgroundOn = true             // false
 
     updateDelayMS = Settings.SpeedsInMS.FAST.speed    // MEDIUM (150ms)
