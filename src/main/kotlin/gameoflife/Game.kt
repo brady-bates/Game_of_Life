@@ -44,7 +44,7 @@ object Game {
 
   fun mainLoop() {
     println("Starting $GAME_NAME")
-    Board.initBoard()
+    Board.initializeBoard()
     while (State.numberOfIterations == -1 || State.currentTick < State.numberOfIterations) {
       println("\u001Bc" + Game + "\n" + Board.concatenateStringGrid(Board.convertToStringGrid()))
       System.out.flush()

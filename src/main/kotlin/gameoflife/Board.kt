@@ -12,7 +12,7 @@ object Board {
     var y: Int = ( Game.Settings.numCols / 2 )
   }
 
-  fun initBoard() {
+  fun initializeBoard() {
     var count = 0
     val seedSize = Game.Settings.seedSize
     val xLowerBound = (Origin.x - seedSize)
