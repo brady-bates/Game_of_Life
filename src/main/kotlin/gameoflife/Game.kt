@@ -19,11 +19,11 @@ object Game {
     var maxIterations: Int = -1
     var height: Int = 45
     var width: Int = 100
-    var updateDelayMS: Long = 400
+    var updateDelayMS: Long = SpeedsInMS.MEDIUM.speed
     var numRows: Int = 45
     var numCols: Int = 85
 
-    enum class SpeedsInMS(val speedInMS: Long) {
+    enum class SpeedsInMS(val speed: Long) {
       SLOW(400),
       MEDIUM(150),
       FAST(50),
