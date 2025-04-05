@@ -33,13 +33,13 @@ object Game {
   }
 
   private fun generateSeed(): String {
-    var out = ""
+    val out = StringBuilder("")
     val seedSize = Settings.seedSize
     repeat( seedSize * seedSize ) {
       val rand = Random.nextInt(0, 2)
-      out += if(rand == 1) "1" else Random.nextInt(0, 2)
+      out.append(if(rand == 1) "1" else Random.nextInt(0, 2))
     }
-    return out
+    return out.toString()
   }
 
   fun mainLoop() {

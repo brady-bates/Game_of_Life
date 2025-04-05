@@ -96,13 +96,13 @@ object Board {
   }
 
   fun concatenateStringGrid(stringGrid: Array<Array<String>>): String {
-    var out = ""
+    val out = StringBuilder("")
     for (row in grid.indices) {
       for (col in grid[0].indices) {
-        out += stringGrid[row][col]
+        out.append(stringGrid[row][col])
       }
     }
-    return out
+    return out.toString()
   }
 
 }
