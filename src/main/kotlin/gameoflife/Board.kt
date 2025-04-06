@@ -22,7 +22,7 @@ object Board {
 //    println("$seedSize, $seedSize, ${Game.Settings.seed}")  // Debugging
     for (row in xLowerBound..xUpperBound) {
       for (col in yLowerBound..yUpperBound) {
-        if (count == Game.Settings.seed.length) break
+        if (Game.Settings.seed.length == count) break
         grid[row][col] = Game.Settings.seed[count].digitToInt()
         count++
       }

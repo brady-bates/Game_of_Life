@@ -11,14 +11,12 @@ object Game {
   }
 
   data object Settings {
-    var seedSize: Int = 5
+    var seedSize: Int = 16
     var seed: String = generateSeed()
     var backgroundOn: Boolean = false
     var aliveString: String = "@"
     var deadString: String = "."
     var maxIterations: Int = -1
-    var height: Int = 45
-    var width: Int = 100
     var updateDelayMS: Long = SpeedsInMS.MEDIUM.speed
     var numRows: Int = 45
     var numCols: Int = 85

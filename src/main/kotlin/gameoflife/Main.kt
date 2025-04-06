@@ -15,9 +15,9 @@ fun main() {
 
   Settings.apply {
     // Comments represent the default value
-    seedSize = 8     // 5
-    height = 45      // 45
-    width = 100      // 100
+    seedSize = 100     // 5
+    numRows = 580      // 45
+    numCols = 750      // 100
 
 //    aliveString = "\uD83D\uDD25"    // @
 //    deadString = "-"                // .
