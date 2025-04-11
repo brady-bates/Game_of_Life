@@ -39,7 +39,7 @@ object Board {
     isGameDone()
     lastGrid = grid
     grid = newGrid
-    Game.State.currentTick++
+    Game.currentTick++
   }
 
   private fun isGameDone() {
@@ -88,7 +88,7 @@ object Board {
     val deadString = if (Game.Settings.backgroundOn) Game.Settings.deadString else " "
     for (row in grid.indices) {
       for (col in grid[0].indices) {
-        outGrid[row][col] = (if (grid[row][col] == 1) Game.Settings.aliveString else deadString) + " "
+        outGrid[row][col] = if (grid[row][col] == 1) Game.Settings.aliveString else deadString
         if (col == grid[0].size-1) outGrid[row][col] += "\n"
       }
     }

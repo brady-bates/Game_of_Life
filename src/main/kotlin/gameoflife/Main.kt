@@ -13,18 +13,23 @@ fun main() {
     "3-cycle oscillation" to "1111011110010101110110010",
   )
 
+  val aliveChars = mapOf(
+    "circle" to "\u25CF",
+    "star" to "\u2726",
+  )
+
   Settings.apply {
     // Comments represent the default value
-    seedSize = 100     // 5
-    numRows = 580      // 45
-    numCols = 750      // 100
+    seedSize = 25     // 5
+    numRows = 85      // 45
+    numCols = 330     // 100
 
-//    aliveString = "\uD83D\uDD25"    // @
-//    deadString = "-"                // .
-    backgroundOn = true             // false
+    aliveString = aliveChars.getValue("star")    // @
+//    deadString = "-"                                // .
+//    backgroundOn = true                             // false
 
-    updateDelayMS = Settings.SpeedsInMS.FAST.speed    // MEDIUM (150ms)
-//    seed = seedList[]                                 // Random Seeds
+    updateDelayMS = Settings.SpeedsInMS.MEDIUM.speed    // MEDIUM (150ms)
+//    seed = seedList.getValue("idk")                 // Random Seeds
 
     if (testing) maxIterations = 1 // No limit
   }
